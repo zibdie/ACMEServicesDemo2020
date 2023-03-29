@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Include Bootstrap -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='icon' href='../assets/favicon.ico' type='image/x-icon'/ >
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/libs/bootstrap/bootstrap.min.css">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../assets/libs/jquery-3.5.1.min.js" ></script>
+    <script src="../assets/libs/popper.min.js" ></script>
+    <script src="../assets/libs/bootstrap/bootstrap.min.js" ></script>
+    <script src="../assets/libs/fontawesome/js/all.js"></script>
+    <script src="../assets/libs/moment.js"></script>
+
+    <!-- For LeafletJS-->
+    <link rel="stylesheet" href="../assets/libs/leaflet/leaflet.css"/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="../assets/libs/leaflet/leaflet.js"></script>
+
+    <!-- Functions -->
+    <script src='../assets/js/functions.js'></script>
+    <title>Messages - ACME Services ERG Panel</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Navbar-->
+        <style>
+
+          .navbarstyle {
+              background-color: #0049ab !important;
+          }
+      
+          .dropdown-item,
+          .nav-link {
+              color: #9fc3f5 !important;
+          }
+      
+          .dropdown-item:hover,
+          .nav-link:hover {
+              color: white !important;
+          }
+      </style>
+      
+      <script>
+          $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+      </script>
+      
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-md navbar-light sticky-top navbarstyle">
+          <div class="container-fluid navbarstyle">
+               <a class="nav-brand navbarstyle" href="./"><img src="../assets/img/logo.png" style="height: 43px;"></a>
+              <button class="navbar-toggler navbarstyle" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="./">Home</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          My ERGs</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./messages.html">Messages & Invites</a>
+                            <a class="dropdown-item" href="./events.html">Events</a>
+                            <a class="dropdown-item" href="./achievements.html">Achievements & Statistics</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">My ERGs</h6>
+                            <a class="dropdown-item" href="#">Womens Connect</a>
+                            <a class="dropdown-item" href="./erg_home.html">Level Up!</a>
+                          </div>
+                        </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./about.html">About ERGs</a>
+                      </li>
+                      <form class="form-inline my-2 my-lg-0">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Type a term or a ERG name" aria-label="Search">
+                          <div class="btn btn-info my-2 my-sm-0" data-toggle="tooltip" data-placement="left" title="For Security Reasons, Search Has Been Disabled In The Live Demo" >Search</div>
+                     </form>
+                     <a class="btn btn-danger ml-3 text-white font-weight-bold" href="/">Log Out</a>
+                  </ul>
+              </div>
+            </nav>
+      
+      
+    </div>
+      <!-- For Wrapper -->
+      <div class="d-flex" id="wrapper">
+        <!--Profile-->
+        <style>
+          body {
+            overflow-x: hidden;
+          }
+          
+                  #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem;
+            -webkit-transition: margin .25s ease-out;
+            -moz-transition: margin .25s ease-out;
+            -o-transition: margin .25s ease-out;
+            transition: margin .25s ease-out;
+          }
+          
+          #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+          }
+          
+          #sidebar-wrapper .list-group {
+            width: 15rem;
+          }
+          
+          #page-content-wrapper {
+            min-width: 100vw;
+          }
+          
+          #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+          }
+          
+          @media (min-width: 768px) {
+            #sidebar-wrapper {
+              margin-left: 0;
+            }
+          
+            #page-content-wrapper {
+              min-width: 0;
+              width: 100%;
+            }
+          
+            #wrapper.toggled #sidebar-wrapper {
+              margin-left: -15rem;
+            }
+          }
+              </style>
+          
+              <!-- Sidebar -->
+              <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading text-center">My Profile </div>
+                <div class="list-group list-group-flush">
+                  <div class="card">
+                    <img src="../assets/profile/profile_pic.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">John Smith</h5>
+                      <h5 class="card-subtitle mb-2 text-muted">Sales Representative</h5>
+                      <p class="card-text">John Smith is a Sales Representative at ACME Services for 4 years!</p>
+                      <ul class="list-group list-group-flush" style="width: 99%;">
+                        <li class="list-group-item"><i class="fas fa-handshake"></i> Currently In 4 ERGs</li>
+                        <li class="list-group-item"><i class="fas fa-trophy"></i> Earned 12 Achievements</li>
+                        <li class="list-group-item"><i class="fas fa-people-arrows"></i> Mentored 5 People</li>
+                        <li class="list-group-item"><i class="fas fa-street-view"></i> Leading 2 ERGs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /#sidebar-wrapper -->
+          
+              <!-- Page Content -->
+              <div id="page-content-wrapper">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                          <button class="btn btn-primary" id="menu-toggle">Show Profile</button>
+                          <div class="text-center font-weight-bolder" style="margin: auto;">See Whats New Today For <div style="display:inline;"id="showDateToday"> </div></div>
+                          <script> 
+                            document.getElementById("showDateToday").textContent = new Date().toLocaleDateString();
+                          </script>
+                        </nav>
+                        <script>
+                          $("#menu-toggle").click(function(e) {
+                            e.preventDefault();
+                            $("#wrapper").toggleClass("toggled");
+                          });
+                        </script>
+        
+        <!-- EDIT EVERYTHING BELOW: -->
+
+        <!--Subtitles Messages -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h2><i class="fas fa-inbox"></i> Your Messages</h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!--MEssages-->
+        <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="msg1">
+                <td>Mark Rice</td>
+                <td>mark.rice@us.acmeservices.com</td>
+                <td>Hey man, it was great seeing you during the ball game, i was hoping you could...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Mark Rice', 'Hey man, it was great seeing you during the ball game, i was hoping you could teach me how to pitch like that after work.', 'Thank you & sure!', 'Send', '', 'msg1', 'Your Message Has Been Sent' ,0, 1)">Read</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('msg1')">Delete</button>
+                    </div>
+                </td>
+              </tr>
+              <tr id="msg2" class="table-warning">
+                <td>Jacob Thornton</td>
+                <td>jacob.thorton@us.acmeservices.com</td>
+                <td>Hi! The presentation you did today was fabulous! I really liked your...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Jacob Thornton', 'Hi! The presentation you did today was fabulous! I really liked your use of graphs & videos! Do you want to hit up lunch later?', 'Thank you & sure!', 'Send', '', 'msg2', 'Your Message Has Been Sent' ,0, 1)">Read</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('msg2')">Delete</button>
+                    </div>
+                </td>
+              </tr>
+              <tr id="msg3" class="table-warning">
+                <td>Valerie Montoya</td>
+                <td>valerie.montoya@us.acmeservices.com</td>
+                <td>Good Afternoon John! I wanted to know how to improve my report on this upcoming...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Valerie Montoya', 'Good Afternoon John! I wanted to know how to improve my report on this upcoming fiscal year deadline. I know you are good with presentations so I hope maybe you can lend a hand.', 'Thank you & sure!', 'Send', '', 'msg3', 'Your Message Has Been Sent' ,0, 1)">Read</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('msg3')">Delete</button>
+                    </div>
+                </td>
+                </tr>
+                <tr id="msg4" class="table-warning">
+                    <td>Richard Marbury</td>
+                    <td>richard.marbury@us.acmeservices.com</td>
+                    <td>Whats Up Dude! I heard you were on the ACME Services Avionics team for...</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-warning" onclick="MessageBox('Richard Marbury', 'Whats Up Dude! I heard you were on the ACME Services Avionics team for their new inflight theater system. I am also working on the same project so I thought you would be cool getting some coffee & brainstorming about it', 'Thank you & sure!', 'Send', '', 'msg4', 'Your Message Has Been Sent' ,0, 1)">Read</button>
+                            <button type="button" class="btn btn-danger" onclick="hideMSG('msg4')">Delete</button>
+                        </div>
+                    </td>
+                    </tr>
+            </tbody>
+          </table>
+        <!--Subtitles - New ERG members -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h2><i class="fas fa-comment-dots"></i> ERG Invites</h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!-- Beginning of ERG Invites-->
+        <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">ERG</th>
+                <th scope="col">Action</th>
+                <th scope="col">Message</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="inv1">
+                <td>Tracie Fowler</td>
+                <td>Womens Connect</td>
+                <td>Join</td>
+                <td>Hi, i was recommended to join this ERG by a friend and I feel like I would fit...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-success" onclick="AcceptanceMsg('Tracie Fowler', 'inv1', 'join')">Allow</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('inv1')">Decline</button>
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Tracie Fowler', 'Hi, i was recommended to join this ERG by a friend and I feel like I would fit in! She said good things about it and I want to further the company and the ERGs goals!', 'Sure! It would be great to have you! Welcome aboard!', 'Allow ERG Invitation', 'Decline ERG Invitation', 'inv1', 'Your Message Has Been Sent and the Invitation has been accepted!', 1,0)">Read</button>
+                      </div>
+                </td>
+              </tr>
+              <tr id="inv2">
+                <td>Mike Jones</td>
+                <td>Level Up!</td>
+                <td>Join</td>
+                <td>Hey, I saw your flyer at the lunchroom and wanted to take a shot at joining your...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-success" onclick="AcceptanceMsg('Mike Jones', 'inv2', 'join')">Allow</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('inv2')">Decline</button>
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Mike Jones', 'Hey, I saw your flyer at the lunchroom and wanted to take a shot at joining your Level Up! ERG. Im new to ACME Services and want to get used to the company culture fast so I thought this would be a start', 'Sure! It would be great to have you! Welcome aboard!', 'Allow ERG Invitation', 'Decline ERG Invitation', 'inv2', 'Your Message Has Been Sent and the Invitation has been accepted!', 1, 0)">Read</button>
+                      </div>
+                </td>
+              </tr>
+              <tr id="inv3">
+                <td>Sara Hundley</td>
+                <td>PRISM (LGBTQ)</td>
+                <td>Invite</td>
+                <td>Hello! I thought you might be interested in joining our ERG group...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-success" onclick="AcceptanceMsg('PRISM (LGBTQ)', 'inv3', 'in')">Join</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('inv3')">Decline</button>
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Sara Hundley', 'Hello! I thought you might be interested in joining our ERG group since you do like to express creativity which are types of members we are looking for!', 'Sure! I would love to join! Thank you so much!', 'Join ERG', 'Decline ERG', 'inv3', 'Your Message Has Been Sent and You Joined the ERG!', 1, 0)">Read</button>
+                      </div>
+                </td>
+              </tr>
+              <tr id="inv4">
+                <td>Merle Beard</td>
+                <td>Veterans Group</td>
+                <td>Invite</td>
+                <td>Hello! I saw you were interested in survival trips and through you may...</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-success" onclick="AcceptanceMsg('Veterans Group', 'inv4', 'in')">Join</button>
+                        <button type="button" class="btn btn-danger" onclick="hideMSG('inv4')">Decline</button>
+                        <button type="button" class="btn btn-warning" onclick="MessageBox('Merle Beard', 'Hello! I saw you were interested in survival trips and through you may want to join the Veterans ERG Group! We do biweekly camping trips on weekends and love to practice our aim!', 'Sure! I would love to join! Thank you so much!', 'Join ERG', 'Decline ERG', 'inv4', 'Your Message Has Been Sent and You Joined the ERG!', 1, 0)">Read</button>
+                      </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <!-- End of ERG Invites-->
+        <!-- Modals Begin -->
+        <!-- Modal For ERG - Begin -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Message Box</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Your Name</label>
+                        <input class="form-control" type="text" placeholder="John Smith" readonly>          
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Recipients Name</label>
+                        <input class="form-control" type="text" id="recpname" placeholder="Something Goes Here" readonly>          
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" id="msgtoshowusr" rows="3" placeholder="Message Goes Here" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Reply</label>
+                        <textarea class="form-control" id="replytoshowusr" rows="3"></textarea>
+                    </div>
+                    </form>
+                    <center>
+                        <div class="container mx-auto justify-content-center">
+                          <img src="../assets/img/home_feed/1x1.png" id="statusgif-msgbox" alt="loading" height="42" width="42">
+                          <br>
+                          <div id="messageStatus-msgbox">
+                
+                          </div>
+                        </div>
+                      </center>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="action-allow" >Allow</button>
+                <button type="button" class="btn btn-danger" id="action-decline">decline</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--Modals for ERG - End-->
+        <!-- Modals End -->
+        <!-- Just for acceptance-->
+<!-- Modal -->
+<div class="modal fade" id="AcceptanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Invitation Accepted</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+          <div class="container mx-auto justify-content-center">
+            <img src="../assets/img/home_feed/1x1.png" id="statusgif-acceptance" alt="loading" height="42" width="42">
+            <br>
+            <div id="messageStatus-acceptance">
+  
+            </div>
+          </div>
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End of-->
+        <!-- JS Functions-->
+          <script>
+              function MessageBox(recpname, msgboxcontent, replydef, actionallow, actiondecline, rowrem, action_msg_allow, statusDeclineButton, statusReadExist)
+              {
+                document.getElementById("recpname").setAttribute("placeholder", recpname);
+                document.getElementById("msgtoshowusr").setAttribute("placeholder", msgboxcontent);
+                document.getElementById("replytoshowusr").value =  replydef;
+                document.getElementById("action-allow").textContent = actionallow;
+                document.getElementById("action-decline").textContent = actiondecline;
+                document.getElementById("action-allow").setAttribute("onclick", "AllowAction('" + action_msg_allow + "','" + rowrem +"')")
+                document.getElementById("action-decline").setAttribute("onclick", "DeclineAction(" + rowrem + ")")
+                if(statusDeclineButton == 0)
+                {
+                    document.getElementById("action-decline").setAttribute("style", "display: none;")
+                }
+                if(statusReadExist == 1)
+                {
+                    $("#"+rowrem).removeClass("table-warning");
+                }
+                $('#exampleModal').modal('show');
+              }
+
+              function AllowAction(action_msg, rowrem)
+              {
+                let statusID = "statusgif-msgbox"
+                let messageID = "messageStatus-msgbox"
+                document.getElementById(statusID).setAttribute("style", "text-align: center; justify-content: center;");
+                document.getElementById(statusID).setAttribute("src", "../assets/img/home_feed/loading.gif");
+                document.getElementById(messageID).textContent = "Please Wait..."
+                document.getElementById(messageID).setAttribute("style", "text-align: center; font-weight: bold");
+                setTimeout(() => {
+                document.getElementById(statusID).setAttribute("src", "../assets/img/home_feed/checkmark.png");
+                document.getElementById(messageID).textContent = action_msg
+                document.getElementById(messageID).setAttribute("style", "text-align: center; color: #00ff80; font-weight: bold;");
+                }, 1000)
+
+                setTimeout(() => { 
+                    document.getElementById(statusID).setAttribute("src", "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="); 
+                    document.getElementById(messageID).textContent = " ";
+                    document.getElementById('replytoshowusr').value = " ";
+                    document.getElementById(rowrem).remove();
+                    $('#exampleModal').modal('hide'); 
+                }, 3000)
+              }
+
+              function DeclineAction(rowClose)
+              {
+                $('#exampleModal').modal('hide'); 
+                document.getElementById(rowClose['id']).remove();
+              }
+
+              function readMsg(idmsgrd)
+              {
+                $(idmsgrd).removeClass("table-warning");
+              }
+
+              function hideMSG(idmsghd)
+              {
+                document.getElementById(idmsghd).remove();
+              }
+
+              function AcceptanceMsg(userName ,rowrem, actionCheck)
+              {
+                let statusID = "statusgif-acceptance"
+                let messageID = "messageStatus-acceptance"
+                document.getElementById(statusID).setAttribute("style", "text-align: center; justify-content: center;");
+                document.getElementById(statusID).setAttribute("src", "../assets/img/home_feed/loading.gif");
+                document.getElementById(messageID).textContent = "Please Wait..."
+                document.getElementById(messageID).setAttribute("style", "text-align: center; font-weight: bold");
+                setTimeout(() => {
+                document.getElementById(statusID).setAttribute("src", "../assets/img/home_feed/checkmark.png");
+                if(actionCheck == 'join')
+                {
+                  document.getElementById(messageID).textContent = `Successfully added ${userName} to the ERG group`
+                }
+                else if(actionCheck == 'in')
+                {
+                  document.getElementById(messageID).textContent = `You have successfully joined ${userName}`
+                }
+                document.getElementById(messageID).setAttribute("style", "text-align: center; color: #00ff80; font-weight: bold;");
+                $('#AcceptanceModal').modal('show'); 
+                }, 1000)
+
+                setTimeout(() => {
+                  document.getElementById(rowrem).remove();
+                  $('#AcceptanceModal').modal('hide'); 
+                }, 3000);
+              }
+          </script>
+
+        <!-- EDIT EVERYTHING ABOVE: -->
+        <!-- Include In Ending -->
+      </div>
+      <!-- /#page-content-wrapper -->
+      </div>
+</body>
+</html>

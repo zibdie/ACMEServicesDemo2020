@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='icon' href='.../assets/favicon.ico' type='image/x-icon'/ >
+    <link rel="stylesheet" href="../assets/libs/bootstrap/bootstrap.min.css">
+    <script src="../assets/libs/jquery-3.5.1.min.js" ></script>
+    <script src="../assets/libs/popper.min.js" ></script>
+    <script src="../assets/libs/bootstrap/bootstrap.min.js" ></script>
+    <script src="../assets/libs/fontawesome/js/all.js"></script>
+    <script src="../assets/libs/moment.js"></script>
+    <link rel="stylesheet" href="../assets/libs/leaflet/leaflet.css"/>
+    <script src="../assets/libs/leaflet/leaflet.js"></script>
+    <script src='../assets/js/functions.js'></script>
+    <title>About ERGs - ACME Services ERG</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Navbar-->
+        <style>
+
+            .navbarstyle {
+                background-color: #0049ab !important;
+            }
+        
+            .dropdown-item,
+            .nav-link {
+                color: #9fc3f5 !important;
+            }
+        
+            .dropdown-item:hover,
+            .nav-link:hover {
+                color: white !important;
+            }
+        </style>
+        
+        <script>
+            $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+        </script>
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-light sticky-top navbarstyle">
+            <div class="container-fluid navbarstyle">
+                 <a class="nav-brand navbarstyle" href="./"><img src="../assets/img/logo.png" style="height: 43px;"></a>
+                <button class="navbar-toggler navbarstyle" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                  <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My ERGs</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./messages.html">Messages & Invites</a>
+                              <a class="dropdown-item" href="./events.html">Events</a>
+                              <a class="dropdown-item" href="./achievements.html">Achievements & Statistics</a>
+                              <div class="dropdown-divider"></div>
+                              <h6 class="dropdown-header">My ERGs</h6>
+                              <a class="dropdown-item" href="#">Womens Connect</a>
+                              <a class="dropdown-item" href="./erg_home.html">Level Up!</a>
+                            </div>
+                          </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./about.html">About ERGs</a>
+                        </li>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Type a term or a ERG name" aria-label="Search">
+                            <div class="btn btn-info my-2 my-sm-0" data-toggle="tooltip" data-placement="left" title="For Security Reasons, Search Has Been Disabled In The Live Demo" >Search</div>
+                       </form>
+                       <a class="btn btn-danger ml-3 text-white font-weight-bold" href="/">Log Out</a>
+                    </ul>
+                </div>
+              </nav>
+        
+        
+    </div>
+
+    <style>
+        .jumbotron {
+        position: relative;
+        overflow: hidden;
+        background-color:black;
+        }
+        .jumbotron video {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        width:100%;
+        height:100%;
+        /*  object-fit is not supported on IE  */
+        object-fit: cover;
+        opacity:0.5;
+        }
+        .jumbotron .container {
+        z-index: 2;
+        position: relative;
+        }
+    </style>
+
+    <style>
+        #mapid { height: 250px;
+                width:250px;
+               display: inline-block; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        .about-quote-style {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+
+    <div class="jumbotron jumbotron-fluid">
+
+        <video muted playsinline autoplay loop>    
+            <source src="" data-src="../assets/video/office-about.mp4" type="video/mp4">
+        </video>
+        
+          <div class="container text-white">
+            <h1 class="display-4">Let ACME Services expand your world...</h1>
+            <p class="lead">Wth thousands of employees in North America & across the world, isnt it time you make a difference at ACME Services?</p>
+            <hr class="my-4">
+            <p>At ACME Services, there is a group for everyone. Join an ERG and work towards goals that help you and the company. Attend events to recruit new members,</p>
+            <p>learn new skills that strengthen you and your career, and sit with mentors that help you get the skills that makes your job done right.</p>
+          </div>
+          <!-- /.container -->
+        </div>
+        <script>
+            function deferVideo() {
+            //defer html5 video loading
+            $("video source").each(function() {
+            var sourceFile = $(this).attr("data-src");
+            $(this).attr("src", sourceFile);
+            var video = this.parentElement;
+            video.load();
+            // uncomment if video is not autoplay
+            //video.play();
+            });
+
+            }
+            window.onload = deferVideo;
+        </script>
+                <hr>
+                <hr>
+        <!-- /.jumbotron -->
+                <!-- CEO Guy -->
+                <div class="container-fluid">
+                    <div class="row welcome text-center">
+                        <div class="col-12">
+                            <h1 class="display-4">CEO of ACME Services North America</h1>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="container-fluid mb-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img class="card-img-top" src="../assets/img/about/ceo.jpg">
+                                <div class="card-body">
+                                    <h4 class="card-title">Luis E. Olson</h4>
+                                    <blockquote class="blockquote mb-0">
+                                        <p class="about-quote-style">At ACME Services, we are embracing change and the possibilities that come with it, and it’s what moves us all to better experiences and ultimately better lives and a better world.</p>
+                                        <footer class="blockquote-footer">Luis E. Olson <cite title="Source Title">CEO of ACME Services North America</cite></footer>
+                                      </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <!--- Two Column Section -->
+        <div class="container-fluid mb-5">
+            <div class="row padding">
+                <div class="col-lg-6">
+                    <h2>Benefits of joining a ACME Services Employee Resource Group</h2>
+                    <ul>
+                        <li>Grow high-potential leaders</li>
+                        <li>Develop community partnerships</li>
+                        <li>Assist in attracting diverse talent</li>
+                        <li>Encourage professional development</li>
+                    </ul>
+                    <br>
+                </div>
+            <div class="col-lg-6">
+                <img src="../assets/img/about/stock_photo1.jpg" class="img-fluid">
+            </div>
+            </div>
+        </div>
+        <hr>
+        <hr>
+         <!--- Meet the team -->
+        <div class="container-fluid">
+            <div class="row welcome text-center">
+                <div class="col-12">
+                    <h1 class="display-4">Your ERG/HR Staff</h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!--- Cards -->
+        <div class="container-fluid">
+            <div class="row padding">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/img/about/team1.png">
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">John Doe has been part of HR for 3 years and has been mentoring for 2 years!</p>
+                            <a href="#" class="btn btn-outline-secondary">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/img/about/team2.png">
+                        <div class="card-body">
+                            <h4 class="card-title">Marisol Harris</h4>
+                            <p class="card-text">Marisol Harris has been Lead HR for 7 months and has managed 3 events!</p>
+                            <a href="#" class="btn btn-outline-secondary">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/img/about/team3.png">
+                        <div class="card-body">
+                            <h4 class="card-title">Justin Lock</h4>
+                            <p class="card-text">Justin Lock has been managing ERGs for ACME Services for 9 months and has assisted in the creation of 2 ERGS!</p>
+                            <a href="#" class="btn btn-outline-secondary">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+        <hr>
+        <!--- Footer -->
+        <div class="container-fluid padding">
+            <div class="row welcome text-center">
+                <div class="col-12">
+                    <h1 class="display-4">Have Questions? Visit Us!</h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+<footer>
+	<div class="container-fluid padding">
+		<div class="row text-center">
+			<div class="col-md-6">
+				<hr class="light">
+				<p>555-555-5555</p>
+				<p>hr@us.acmeservices.com</p>
+				<p>2 Water St</p>
+                		<p>New York, NY 10004</p>
+                
+                <div id="mapid"></div>
+                <script>
+                    const mymap = L.map('mapid').setView([40.702456, -74.012816], 16);
+                    const attribution = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+                    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution})
+                    tiles.addTo(mymap)
+
+                    L.marker([40.702456, -74.012816]).addTo(mymap)
+                    .bindPopup('ACME Services NA Headquarters')
+                    .openPopup();
+                </script>
+
+			</div>
+			<div class="col-md-6">
+				<hr class="light">
+				<h5>Our Hours:</h5>
+				<hr class="light">
+				<p><strong>Monday: </strong> 9:00AM - 5:00PM</p>
+				<p><strong>Tuesday: </strong> 9:00AM - 5:00PM</p>
+				<p><strong>Wednesday: </strong> 9:00AM - 5:00PM</p>
+                <p><strong>Thursday: </strong> 9:00AM - 5:00PM</p>
+                <p><strong>Friday: </strong> 9:00AM - 5:00PM</p>
+                <p><strong>Saturday: </strong> Closed</p>
+                <p><strong>Sunday: </strong> Closed</p>
+			</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

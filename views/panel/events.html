@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Include Bootstrap -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='icon' href='../assets/favicon.ico' type='image/x-icon'/ >
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/libs/bootstrap/bootstrap.min.css">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../assets/libs/jquery-3.5.1.min.js" ></script>
+    <script src="../assets/libs/popper.min.js" ></script>
+    <script src="../assets/libs/bootstrap/bootstrap.min.js" ></script>
+    <script src="../assets/libs/fontawesome/js/all.js"></script>
+    <script src="../assets/libs/moment.js"></script>
+
+    <!-- For LeafletJS-->
+    <link rel="stylesheet" href="../assets/libs/leaflet/leaflet.css"/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="../assets/libs/leaflet/leaflet.js"></script>
+
+    <!-- Functions -->
+    <script src='../assets/js/functions.js'></script>
+    <title>Events - ACME Services ERG</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Navbar-->
+        <style>
+
+          .navbarstyle {
+              background-color: #0049ab !important;
+          }
+      
+          .dropdown-item,
+          .nav-link {
+              color: #9fc3f5 !important;
+          }
+      
+          .dropdown-item:hover,
+          .nav-link:hover {
+              color: white !important;
+          }
+      </style>
+      
+      <script>
+          $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+      </script>
+      
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-md navbar-light sticky-top navbarstyle">
+          <div class="container-fluid navbarstyle">
+               <a class="nav-brand navbarstyle" href="./"><img src="../assets/img/logo.png" style="height: 43px;"></a>
+              <button class="navbar-toggler navbarstyle" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="./">Home</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          My ERGs</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./messages.html">Messages & Invites</a>
+                            <a class="dropdown-item" href="./events.html">Events</a>
+                            <a class="dropdown-item" href="./achievements.html">Achievements & Statistics</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">My ERGs</h6>
+                            <a class="dropdown-item" href="#">Womens Connect</a>
+                            <a class="dropdown-item" href="./erg_home.html">Level Up!</a>
+                          </div>
+                        </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./about.html">About ERGs</a>
+                      </li>
+                      <form class="form-inline my-2 my-lg-0">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Type a term or a ERG name" aria-label="Search">
+                          <div class="btn btn-info my-2 my-sm-0" data-toggle="tooltip" data-placement="left" title="For Security Reasons, Search Has Been Disabled In The Live Demo" >Search</div>
+                     </form>
+                     <a class="btn btn-danger ml-3 text-white font-weight-bold" href="/">Log Out</a>
+                  </ul>
+              </div>
+            </nav>
+      
+      
+    </div>
+      <!-- For Wrapper -->
+      <div class="d-flex" id="wrapper">
+        <!--Profile-->
+        <style>
+          body {
+            overflow-x: hidden;
+          }
+          
+                  #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem;
+            -webkit-transition: margin .25s ease-out;
+            -moz-transition: margin .25s ease-out;
+            -o-transition: margin .25s ease-out;
+            transition: margin .25s ease-out;
+          }
+          
+          #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+          }
+          
+          #sidebar-wrapper .list-group {
+            width: 15rem;
+          }
+          
+          #page-content-wrapper {
+            min-width: 100vw;
+          }
+          
+          #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+          }
+          
+          @media (min-width: 768px) {
+            #sidebar-wrapper {
+              margin-left: 0;
+            }
+          
+            #page-content-wrapper {
+              min-width: 0;
+              width: 100%;
+            }
+          
+            #wrapper.toggled #sidebar-wrapper {
+              margin-left: -15rem;
+            }
+          }
+              </style>
+        
+          
+              <!-- Sidebar -->
+              <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading text-center">My Profile </div>
+                <div class="list-group list-group-flush">
+                  <div class="card">
+                    <img src="../assets/profile/profile_pic.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">John Smith</h5>
+                      <h5 class="card-subtitle mb-2 text-muted">Sales Representative</h5>
+                      <p class="card-text">John Smith is a Sales Representative at ACME Services for 4 years!</p>
+                      <ul class="list-group list-group-flush" style="width: 99%;">
+                        <li class="list-group-item"><i class="fas fa-handshake"></i> Currently In 4 ERGs</li>
+                        <li class="list-group-item"><i class="fas fa-trophy"></i> Earned 12 Achievements</li>
+                        <li class="list-group-item"><i class="fas fa-people-arrows"></i> Mentored 5 People</li>
+                        <li class="list-group-item"><i class="fas fa-street-view"></i> Leading 2 ERGs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /#sidebar-wrapper -->
+          
+              <!-- Page Content -->
+              <div id="page-content-wrapper">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                          <button class="btn btn-primary" id="menu-toggle">Show Profile</button>
+                          <div class="text-center font-weight-bolder" style="margin: auto;">See Whats New Today For <div style="display:inline;"id="showDateToday"> </div></div>
+                          <script> 
+                            document.getElementById("showDateToday").textContent = new Date().toLocaleDateString();
+                          </script>
+                        </nav>
+                        <script>
+                          $("#menu-toggle").click(function(e) {
+                            e.preventDefault();
+                            $("#wrapper").toggleClass("toggled");
+                          });
+                        </script>
+        
+        <!-- EDIT EVERYTHING BELOW: -->
+
+        <script src="../assets/libs/canvasjs/canvasjs.min.js"></script>
+ 
+
+        <div class="container-fluid">
+            <div class="row welcome text-center">
+                <div class="col-12">
+                    <h1 class="display-4">Events Coming Up!</h1>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="container mx-auto">
+            <div class="row">
+            
+              <div class="col-sm">
+                <div class="card mb-3 text-center" style="max-width: 18rem;">
+                    <img class="card-img-top" src="../assets/img/events_feed/research-exp1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Tour of Research!</h5>
+                      <p class="card-text">The City University of New York (CUNY) has invited the ACME Services team to tour its biology research lab at the 'Research Foundation of CUNY'. Register now to reserve your spot!</p>
+                      <div id="cunyresearch1-map"></div>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="https://www.google.com/maps/place/Research+Foundation+of+CUNY/@40.7553392,-73.9911516,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259ab552bef8b:0xa587b0095662e618!8m2!3d40.7553392!4d-73.9889629" target="_href" class="btn btn-outline-info">Show Map</a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CUNYResearchModalBox">Register Now!</button>
+                      </div>
+                    <div class="card-footer">
+                        In 7 Days!
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="card mb-3 text-center" style="max-width: 18rem;">
+                    <img class="card-img-top" src="../assets/img/events_feed/park-exp1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Brainstorm with Nature</h5>
+                      <p class="card-text">The ACME Services Avionics Department is looking for ideas for their next product! Join us in Central Park and bring an empty stomach to fill your thinking caps on!</p>
+                      <div id="centralparkthink1-map"></div>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="https://www.google.com/maps/place/Sheep+Meadow/@40.7717691,-73.9770305,17z/data=!3m1!4b1!4m5!3m4!1s0x89c258f3ae5c307b:0x8837aff801306c08!8m2!3d40.7717691!4d-73.9748418" target="_href" class="btn btn-outline-info">Show Map</a>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CentralParkMap">Register Now!</button>
+                      </div>
+                    <div class="card-footer">
+                        In 12 Days!
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-sm">
+                <div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
+                    <img class="card-img-top" src="../assets/img/events_feed/coffee-shop-exp1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Coffee Test & Prototype</h5>
+                      <p class="card-text">Come hang out and taste various different types of coffees while we prototype the next product!</p>
+                      <div id="coffeeshop1-map"></div>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="https://www.google.com/maps/place/Starbucks+Reserve+Roastery+New+York/@40.741621,-74.0073267,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259bf6dd90021:0x645ce21be1b31735!8m2!3d40.741621!4d-74.005138" target="_href" class="btn btn-danger">Show Map</a>
+                      </div>
+                    <div class="card-footer">
+                        Happened 6 days ago
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+
+            <div class="card mb-5">
+                <div class="media">
+                    <img src="../assets/img/events_feed/reminder.png" class="align-self-center mr-3" alt="...">
+                    <div class="media-body">
+                    <h5 class="mt-0">Have You Completed Your Company Benefician Hours?</h5>
+                    <p>ACME Services Employees that are registered with a ERG group are required to do their company benefician hours, either by community service, mentorship, or recruitment.</p>
+                    <p class="mb-0">ACME Services ERG Members who fail to complete their hours by their scheduled deadline may be removed from their ERG group and their positions within it!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Help Cards-->
+            <!-- Mentor Event (DONE) -->
+            <div class="row">
+                <div class="col-sm">
+                  <div class="card mb-3 text-center" style="max-width: 18rem;">
+                      <img class="card-img-top" src="../assets/img/events_feed/mentor-exp1.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Mentorship Program</h5>
+                        <p class="card-text">Pass down what you know to your fellow ACME Services Employees at our Mentorship Program! Located right here at ACME Services NA HQ, educate our members on the details they need to know!</p>
+                        <div id="mentor1-map"></div>
+                      </div>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <a href="https://www.google.com/maps/@40.7024844,-74.0127087,3a,75y,16.14h,92.37t/data=!3m6!1e1!3m4!1sT60lRDGSm3J12Pgj8YylDA!2e0!7i16384!8i8192" target="_href" class="btn btn-outline-info">Show Map</a>
+                          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#MentorEvent1">Register Now!</button>
+                        </div>
+                      <div class="card-footer">
+                          In 3 Days!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                  <div class="card mb-3 text-center" style="max-width: 18rem;">
+                      <img class="card-img-top" src="../assets/img/events_feed/community-service-exp1.jpg" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Lend a Helping Hand!</h5>
+                        <p class="card-text">The Womens Connect ERG is lending a hand to the Newark Community in helping them plant trees, flowers, and other plants. Come plant the seeds and help our earth!</p>
+                        <div id="community1-map"></div>
+                      </div>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <a href="https://www.google.com/maps/place/Branch+Brook+Park/@40.7594562,-74.182265,18z/data=!3m1!4b1!4m13!1m7!3m6!1s0x89c25370329a0e1d:0xe1bcdc2adcfee473!2sNewark,+NJ!3b1!8m2!3d40.735657!4d-74.1723667!3m4!1s0x89c25491d00b5073:0xcd870898964045ff!8m2!3d40.7594562!4d-74.181168" target="_href" class="btn btn-outline-info">Show Map</a>
+                          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CommunityMap">Register Now!</button>
+                        </div>
+                      <div class="card-footer">
+                          In 12 Days!
+                        </div>
+                    </div>
+                </div>
+                <!-- SXSW -->
+                <div class="col-sm">
+                  <div class="card mb-3 text-center" style="max-width: 18rem;">
+                      <img class="card-img-top" src="../assets/img/events_feed/sxsw1.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Spirit of ACME Services at SXSW <div class="nYearSXSW" style="display: inline-block;"></div></h5>
+                        <p class="card-text">The ACME Services team is heading to SXSW in Austin, Texas in the middle of March! Help us bring enjoyment to SXSW!</p>
+                        <div id="sxsw1-map"></div>
+                      </div>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <a href="https://www.google.com/maps/place/SXSW+(South+by+Southwest)/@30.2771219,-97.7464153,17.5z/data=!4m8!1m2!2m1!1sSXSW!3m4!1s0x0:0xc16917bceb945307!8m2!3d30.2780444!4d-97.7453613" target="_href" class="btn btn-outline-info">Show Map</a>
+                          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#SXSWMap">Register Now!</button>
+                        </div>
+                      <div class="card-footer">
+                          Event Happening in <div class="nYearSXSW"></div> - Sign Deadline by August 5, <div class="nYearSXSW" style="display: inline-block;"></div>
+                        </div>
+                    </div>
+                </div>
+  
+              </div>
+
+
+          </div>
+        </div>
+
+
+<!-- BEGIN OF MAP SPOTS-->
+        <!-- SXSW Map - Begin -->
+        <div class="modal fade" id="SXSWMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Registration for 'Spirit of ACME Services at SXSW <div class="nYearSXSW" style="display: inline-block;"></div></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              <div class="text-center">
+                  You are about to register for the 'Spirit of ACME Services at SXSW <div class="nYearSXSW" style="display: inline-block;"></div> event
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Address: </strong>1400 Lavaca St STE 1100, Austin, TX 78701</li>
+                      <li class="list-group-item"><strong>Time: </strong>March 12, <div class="nYearSXSW" style="display: inline-block;"></div> - March 20, <div class="nYearSXSW" style="display: inline-block;"></div></li>
+                      <li class="list-group-item"><strong>Requirements: </strong>Ability to travel</li>
+                      <li class="list-group-item"><strong>Notes: </strong>Prepare for a long week!</li>
+                  </ul>
+              </div>
+              </div>
+              <center>
+                  <div class="container mx-auto justify-content-center">
+                  <img src="../assets/img/home_feed/1x1.png" id="statusgif-sxsw1" alt="loading" height="42" width="42">
+                  <br>
+                  <div id="messageStatus-sxsw1">
+          
+                  </div>
+                  </div>
+              </center>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="MessageBoxDismissSend('statusgif-sxsw1', 'messageStatus-sxsw1', '#SXSWMap', 'You have successfully registered for the event!')">Register Now!</button>
+              </div>
+          </div>
+          </div>
+        </div>
+
+        <style>
+          #sxsw1-map { height: 200px;
+                  width:200px;
+              display: inline-block; }
+        </style>
+        <script>
+          const mycorlong5 = 30.277148;
+          const mycorlat5 = -97.742566;
+          const mymap5 = L.map('sxsw1-map').setView([mycorlong5, mycorlat5], 16);
+          const attribution5 = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+          const tiles5 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution5})
+          tiles5.addTo(mymap5)
+
+          L.marker([mycorlong5, mycorlat5]).addTo(mymap5)
+          .bindPopup('SXSW (South by Southwest)')
+          .openPopup();
+        </script>
+
+        <!-- SXSW Map - End-->
+        <!-- Community Map - Begin -->
+        <div class="modal fade" id="CommunityMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Registration for 'Lend a Helping Hand'</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+              <div class="text-center">
+                  You are about to register for the 'Lend a Helping Hand' event
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Address: </strong>Lake St & Park Avenue, Newark, NJ 07104</li>
+                      <li class="list-group-item"><strong>Time: </strong>3:00PM EST - 5:00PM EST</li>
+                      <li class="list-group-item"><strong>Requirements: </strong>Clothes your not worried to get dirty</li>
+                      <li class="list-group-item"><strong>Notes: </strong>Food will be served</li>
+                  </ul>
+              </div>
+              </div>
+              <center>
+                  <div class="container mx-auto justify-content-center">
+                  <img src="../assets/img/home_feed/1x1.png" id="statusgif-community1" alt="loading" height="42" width="42">
+                  <br>
+                  <div id="messageStatus-community1">
+          
+                  </div>
+                  </div>
+              </center>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="MessageBoxDismissSend('statusgif-community1', 'messageStatus-community1', '#CommunityMap', 'You have successfully registered for the event!')">Register Now!</button>
+              </div>
+          </div>
+          </div>
+        </div>
+
+        <style>
+          #community1-map { height: 200px;
+                  width:200px;
+              display: inline-block; }
+        </style>
+        <script>
+          const mycorlong4 = 40.759431;
+          const mycorlat4 = -74.181065;
+          const mymap4 = L.map('community1-map').setView([mycorlong4, mycorlat4], 16);
+          const attribution4 = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+          const tiles4 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution4})
+          tiles4.addTo(mymap4)
+
+          L.marker([mycorlong4, mycorlat4]).addTo(mymap4)
+          .bindPopup('Branch Brook Park')
+          .openPopup();
+        </script>
+
+        <!-- Community Map - End-->
+        <!-- Mentor Map - Begin -->
+        <div class="modal fade" id="MentorEvent1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registration for 'ACME Services ERG Mentorship'</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <div class="text-center">
+                    You are about to register for the 'ACME Services ERG Mentorship' event
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Address: </strong>ACME Services North America HQ - 2 Riverfront Plaza 7th Floor, Newark, NJ 07102</li>
+                        <li class="list-group-item"><strong>Time: </strong>12:00PM EST - 2:00PM EST</li>
+                        <li class="list-group-item"><strong>Requirements: </strong>Notebook & Pens/Pencils to Take Notes</li>
+                        <li class="list-group-item"><strong>Notes: </strong>Food will be served</li>
+                    </ul>
+                </div>
+                </div>
+                <center>
+                    <div class="container mx-auto justify-content-center">
+                    <img src="../assets/img/home_feed/1x1.png" id="statusgif-mentorship1" alt="loading" height="42" width="42">
+                    <br>
+                    <div id="messageStatus-mentorship1">
+            
+                    </div>
+                    </div>
+                </center>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="MessageBoxDismissSend('statusgif-mentorship1', 'messageStatus-mentorship1', '#MentorEvent1', 'You have successfully registered for the event!')">Register Now!</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <style>
+            #mentor1-map { height: 200px;
+                    width:200px;
+                display: inline-block; }
+        </style>
+        <script>
+            const mycorlong3 = 40.702456;
+            const mycorlat3 = -74.012816;
+            const mymap3 = L.map('mentor1-map').setView([mycorlong3, mycorlat3], 16);
+            const attribution3 = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            const tiles3= L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution3})
+            tiles3.addTo(mymap3)
+
+            L.marker([mycorlong3, mycorlat3]).addTo(mymap3)
+            .bindPopup('ACME Services NA HQ')
+            .openPopup();
+        </script>
+
+        <!-- Mentor Map - End-->
+
+        <!-- Central Park Map - Begin -->
+        <div class="modal fade" id="CentralParkMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registration for 'Brainstorm with Nature'</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <div class="text-center">
+                    You are about to register for the 'Brainstorm with Nature' event
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Address: </strong>(Sheep Meadow Central Park) 1802 E 65th St, New York, NY 10065</li>
+                        <li class="list-group-item"><strong>Time: </strong>5:00PM EST - 7:00PM EST</li>
+                        <li class="list-group-item"><strong>Requirements: </strong>Notebook & Pens/Pencils to take notes</li>
+                        <li class="list-group-item"><strong>Notes: </strong>Food will be served</li>
+                    </ul>
+                </div>
+                </div>
+                <center>
+                    <div class="container mx-auto justify-content-center">
+                    <img src="../assets/img/home_feed/1x1.png" id="statusgif-centralparkmap" alt="loading" height="42" width="42">
+                    <br>
+                    <div id="messageStatus-centralparkmap">
+            
+                    </div>
+                    </div>
+                </center>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="MessageBoxDismissSend('statusgif-centralparkmap', 'messageStatus-centralparkmap', '#CentralParkMap', 'You have successfully registered for the event!')">Register Now!</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <style>
+            #centralparkthink1-map { height: 200px;
+                    width:200px;
+                display: inline-block; }
+        </style>
+        <script>
+            const mycorlong2 = 40.771854;
+            const mycorlat2 = -73.974584;
+            const mymap2 = L.map('centralparkthink1-map').setView([mycorlong2, mycorlat2], 16);
+            const attribution2 = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            const tiles2= L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution2})
+            tiles2.addTo(mymap2)
+
+            L.marker([mycorlong2, mycorlat2]).addTo(mymap2)
+            .bindPopup('ACME Services Avionics Picnic Spot')
+            .openPopup();
+        </script>
+
+        <!-- Central Park Map - End-->
+        <!-- CUNY Research Map - Begin -->
+        <div class="modal fade" id="CUNYResearchModalBox" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Registration for 'Research Foundation of CUNY'</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="text-center">
+                      You are about to register for the 'Research Foundation of CUNY' event
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Address: </strong>230 W 41st St #7, New York, NY 10036</li>
+                        <li class="list-group-item"><strong>Time: </strong>6:00PM EST - 8:00PM EST</li>
+                        <li class="list-group-item"><strong>Requirements: </strong>Bring An Open Mind!</li>
+                        <li class="list-group-item"><strong>Notes: </strong>Please no flip-flips</li>
+                      </ul>
+                  </div>
+                </div>
+                <center>
+                    <div class="container mx-auto justify-content-center">
+                      <img src="../assets/img/home_feed/1x1.png" id="statusgif-cunyresearch" alt="loading" height="42" width="42">
+                      <br>
+                      <div id="messageStatus-cunyresearch">
+            
+                      </div>
+                    </div>
+                  </center>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="MessageBoxDismissSend('statusgif-cunyresearch', 'messageStatus-cunyresearch', '#CUNYResearchModalBox', 'You have successfully registered for the event!')">Register Now!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <style>
+            #cunyresearch1-map { height: 200px;
+                    width:200px;
+                   display: inline-block; }
+        </style>
+        <script>
+            const mycorlong1 = 40.755246;
+            const mycorlat1 = -73.989011;
+            const mymap1 = L.map('cunyresearch1-map').setView([mycorlong1, mycorlat1], 16);
+            const attribution1 = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            const tiles1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution1})
+            tiles1.addTo(mymap1)
+
+            L.marker([mycorlong1, mycorlat1]).addTo(mymap1)
+            .bindPopup('Research Foundation of CUNY')
+            .openPopup();
+        </script>
+
+        <!-- CUNY Research Map - End-->
+        <!-- Coffee Shop Exp Map - Begin-->
+        <style>
+            #coffeeshop1-map { height: 200px;
+                    width:200px;
+                   display: inline-block; }
+        </style>
+        <script>
+            const mymap = L.map('coffeeshop1-map').setView([40.741640, -74.005134], 16);
+            const attribution = '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution})
+            tiles.addTo(mymap)
+
+            L.marker([40.741640, -74.005134]).addTo(mymap)
+            .bindPopup('Starbucks Reserve Roastery')
+            .openPopup();
+        </script>
+        <!-- Coffee Shop Exp Map - End-->
+<!-- END OF MAP SPOTS-->
+
+      <script>
+        //For SXSW Year
+        let dateObjSXSW = new Date();
+        for(let i = 0; i < document.getElementsByClassName("nYearSXSW").length; i++) {
+          document.getElementsByClassName("nYearSXSW")[i].textContent = dateObjSXSW.getFullYear()+1;
+        }
+      </script>
+
+        <!-- EDIT EVERYTHING ABOVE: -->
+        <!-- Include In Ending -->
+      </div>
+      <!-- /#page-content-wrapper -->
+      </div>
+</body>
+</html>
