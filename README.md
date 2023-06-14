@@ -26,7 +26,7 @@ Or you can just pull it from DockerHub [here](https://hub.docker.com/r/zibdie/ac
 
 We also have a live demonstration online:
 
-[![Live Demo](https://github.com/zibdie/ACMEServicesDemo2020/assets/59550818/caf795ee-77a4-45e9-ab6f-4779a790ff0e)](https://acme-panel-braven-2020-live-demo.netlify.app/) 
+[![Live Demo](https://acme-panel-braven-2020-live-demo.netlify.app/)]
 
 You can click the button above or type this URL below to visit it [URL may change in the future, check back to this repo if no longer live]
 ```
