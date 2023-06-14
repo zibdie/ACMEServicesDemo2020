@@ -16,6 +16,7 @@ jobs:
       - name: Cleanup Folder
         run: |
           sudo mv ./.github/workflows/PushToLive.yml ./.github/workflows/PushToLive.yml.ignore
+          sudo mv ./.github/workflows/PushToDockerhub.yml ./.github/workflows/PushToDockerhub.yml.ignore
           sudo rm -rf ./.git
           sed -i -e "/.env/d" ./.gitignore
       - name: Pushes to another repository
