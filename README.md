@@ -24,7 +24,4 @@ Or you can just pull it from DockerHub [here](https://hub.docker.com/r/zibdie/ac
 
 ---
 
-We also have a live demonstration online. Type this URL below to visit it [URL may change in the future, check back to this repo if no longer live]
-```
-https://nour.zibdie.com/redirect/acmeservicedemo2020live
-```
+We also have a live demonstration online [here](https://nour.zibdie.com/redirect/acmeservicedemo2020live) .
