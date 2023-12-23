@@ -8,20 +8,19 @@ The `requirements.txt` is just to install a package for the Python files that I 
 
 ---
 
-If you wish to test it out locally, you can spin up a Docker container by running these two commands
+If you wish to test it out locally, you can spin up a Docker container by running these two commands:
 
 ```
 > docker build -t acmeservicesdemo2020 .
 > docker run -d -p 8345:80 acmeservicesdemo2020
 ```
 
-Or you can just pull it from DockerHub [here](https://hub.docker.com/r/zibdie/acmeservicesdemo2020) .
+Or you can just pull and run it from DockerHub [here](https://hub.docker.com/r/zibdie/acmeservicesdemo2020) . This is recommended since you will have the latest version:
 
 ```
-> docker pull zibdie/acmeservicesdemo2020:latest
-> docker run -d -p 8345:80 zibdie/acmeservicesdemo2020
+> docker run -d -p 8345:80 zibdie/acmeservicesdemo2020:latest
 ```
 
 ---
 
-We also have a live demonstration online [here](https://nour.zibdie.com/redirect/acmeservicedemo2020live) .
+We also have a live demonstration online if you cannot run it locally [here](https://nour.zibdie.com/redirect/acmeservicedemo2020live) .
